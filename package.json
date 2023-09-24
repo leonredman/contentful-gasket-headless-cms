@@ -8,12 +8,14 @@
     "local": "gasket local"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.17.2",
     "@gasket/assets": "^6.39.0",
     "@gasket/cli": "^6.41.0",
     "@gasket/log": "^6.39.0",
     "@gasket/nextjs": "^6.40.0",
     "@gasket/preset-nextjs": "^6.41.0",
     "@gasket/redux": "^6.39.0",
+    "contentful": "^10.5.2",
     "express": "^4.16.3",
     "lodash.merge": "^4.6.0",
     "next": "^12.0.8",
