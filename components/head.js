@@ -18,8 +18,8 @@ Head.propTypes = {
 };
 
 Head.defaultProps = {
-  title: 'Gasket-Test-App',
-  description: 'Test Gasket App'
+  title: 'Contentful Gasket-Test-App',
+  description: 'MOps Contentful Gasket Sandbox'
 };
 
 export default Head;
