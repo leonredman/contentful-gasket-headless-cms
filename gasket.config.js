@@ -4,4 +4,10 @@ module.exports = {
       '@gasket/nextjs',
     ],
   },
-};
+  nextConfig: {
+     images: {
+      domains: ['images.ctfassets.net'],
+    },
+
+  }
+}
