@@ -30,7 +30,7 @@ export async function getStaticProps() {
 }
 
 
-export const IndexPage = ( {recipes,marquee}) => (
+export const IndexPage = ( {recipes}) => (
   console.log(recipes),
 
   <div style={ pageStyle }>
