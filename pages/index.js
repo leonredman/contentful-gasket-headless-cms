@@ -42,8 +42,8 @@ export const IndexPage = ({ recipes, marqueeData }) => {
 
       {marqueeData[0]?.fields && <Marquee data={marqueeData[0]} />}
 
-      <h1 style={headlineStyle}>Contentful Sandbox</h1>
-      <h2 style={headlineStyle}>Multi-column</h2>
+      <h1 style={headlineStyle}>Sho-Daddy Contentful Sandbox</h1>
+      <h2 style={headlineStyle}>Multi-column Section</h2>
       <div style={containerStyle} className="container">
         {recipes.map((recipe) => (
           <ProductCard key={recipe.sys.id} recipe={recipe} />

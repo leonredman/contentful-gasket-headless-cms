@@ -10,16 +10,26 @@ export default function Marquee({ data }) {
     fullWidthEyebrow,
     fullWidthDescription,
   } = data.fields;
+
+  const fullWidthImageUrl = "https:" + fullWidthImage.fields.file.url;
+
   return (
     <div className="marqueeContainer">
       <div className="heroWrapper">
-        <Image
-          src={"https:" + fullWidthImage.fields.file.url}
-          width={fullWidthImage.fields.file.details.image.width}
-          height={fullWidthImage.fields.file.details.image.height}
-          alt={fullWidthHeading}
-          className="marqueeImage"
-        />
+        <div className="heroDesktopImage">
+          <Image
+            src={"https:" + fullWidthImage.fields.file.url}
+            width={fullWidthImage.fields.file.details.image.width}
+            height={fullWidthImage.fields.file.details.image.height}
+            alt={fullWidthHeading}
+            className="marqueeImage"
+          />
+        </div>
+
+        <div
+          className="heroMobileBg"
+          style={{ backgroundImage: `url(${fullWidthImageUrl})` }}
+        ></div>
 
         <div className="heroContent">
           <div className="eyebrow">{fullWidthEyebrow}</div>
@@ -34,6 +44,14 @@ export default function Marquee({ data }) {
       <style jsx>{`
         .heroWrapper {
           position: relative;
+        }
+
+        .heroDesktopImage {
+          display: block;
+        }
+
+        .heroMobileBg {
+          display: none;
         }
 
         .marqueeImage {
@@ -51,8 +69,8 @@ export default function Marquee({ data }) {
           color: black;
           max-width: 30%;
           padding: 20px;
-          // background: rgba(0, 0, 0, 0.4);
           border-radius: 8px;
+          z-index: 2;
         }
 
         .eyebrow {
@@ -82,15 +100,57 @@ export default function Marquee({ data }) {
         }
 
         @media (max-width: 768px) {
+          .heroWrapper {
+            height: 75vh;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .heroDesktopImage {
+            display: none;
+          }
+
+          .heroMobileBg {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("https:" + fullWidthImage.fields.file.url);
+            background-size: cover;
+            background-position: left center;
+            z-index: 1;
+          }
+
           .heroContent {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            max-width: 85%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* ⬆ Push content higher */
+            align-items: flex-start;
+            color: black;
+            box-sizing: border-box;
+          }
+
+          .heroContent > * {
             max-width: 90%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
           }
 
           .marqueeTitle {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+          }
+
+          .cta-style {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
           }
         }
       `}</style>
