@@ -1,52 +1,56 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import Head from '../components/head';
+import React from "react";
+import Head from "../components/head";
 // import GasketEmblem from '@gasket/assets/react/gasket-emblem';
 
-import { createClient } from 'contentful';
-import ProductCard from '../components/ProductCard';
+import { createClient } from "contentful";
+import Marquee from "../components/Marquee";
+import ProductCard from "../components/ProductCard";
 
 // const logoStyle = { width: '250px', height: '250px' };
-const pageStyle = { color: 'black' };
-const headlineStyle = { textAlign: 'center' };
-const containerStyle= { margin: '40px' };
-
+const pageStyle = { color: "black" };
+const headlineStyle = { textAlign: "center" };
+const containerStyle = { margin: "40px" };
 
 export async function getStaticProps() {
-
   const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID,
     accessToken: process.env.CONTENTFUL_ACCESS_KEY,
-  })
+  });
 
-  const res = await client.getEntries({ content_type: 'recipe' })
+  const recipeRes = await client.getEntries({ content_type: "recipe" });
+  const marqueeRes = await client.getEntries({
+    content_type: "fullWidthMarquee",
+  });
 
   return {
     props: {
-      recipes: res.items,
-      fullWidthMarquee: res.items
-    }
-  }
+      recipes: recipeRes.items,
+      marqueeData: marqueeRes.items,
+    },
+  };
 }
 
+export const IndexPage = ({ recipes, marqueeData }) => {
+  console.log("marqueeData[0]:", marqueeData[0]);
+  console.log("Full Width Marquee Entry:", marqueeData);
+  console.log("Recipes (card data):", recipes);
 
-export const IndexPage = ( {recipes}) => (
-  console.log(recipes),
+  return (
+    <div style={pageStyle}>
+      <Head title="Home" />
 
-  <div style={ pageStyle }>
-     <Head title='Home'/>
-      <h1 style={ headlineStyle }>Contentful Sandbox</h1> 
-        <h2 style={ headlineStyle }>Multi-column</h2>
-          <div style={ containerStyle } className='container'>
-             {recipes.map(recipe => (
-                <ProductCard key={recipe.sys.id} recipe={recipe}/>
-             ))}
+      {marqueeData[0]?.fields && <Marquee data={marqueeData[0]} />}
 
-         
-        </div>
-  </div>
- 
-
-);
+      <h1 style={headlineStyle}>Contentful Sandbox</h1>
+      <h2 style={headlineStyle}>Multi-column</h2>
+      <div style={containerStyle} className="container">
+        {recipes.map((recipe) => (
+          <ProductCard key={recipe.sys.id} recipe={recipe} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default IndexPage;
