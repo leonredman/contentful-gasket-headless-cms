@@ -140,7 +140,7 @@ export default function Marquee({ data }) {
             max-width: 85%;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* ⬆ Push content higher */
+            justify-content: flex-start; /* Push content higher */
             align-items: flex-start;
             color: black;
             box-sizing: border-box;

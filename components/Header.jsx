@@ -10,6 +10,8 @@ const headerStyle = {
   display: "flex",
   alignItems: "center",
   marginBottom: "15px",
+  overflowX: "hidden",
+  boxSizing: "border-box",
 };
 
 export default function Header() {
