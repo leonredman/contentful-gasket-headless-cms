@@ -2,6 +2,7 @@
 import { createClient } from "contentful";
 import React from "react";
 import Head from "../components/head";
+import Header from "../components/Header";
 import Marquee from "../components/Marquee";
 import ProductCard from "../components/ProductCard";
 
@@ -39,6 +40,7 @@ export const IndexPage = ({ page }) => {
 
   return (
     <div style={pageStyle}>
+      <Header />
       <Head title={page.fields.title || "Sho-Daddy"} />
 
       {sections.map((section, index) => {
