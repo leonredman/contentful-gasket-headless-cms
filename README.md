@@ -2,7 +2,11 @@
 
 https://gasket.dev/#/docs/quick-start?id=start
 
-Test Gasket Contentful Headless CMS App - Sandbox
+Local Proj folder: gasket-contentful-sandbox
+
+Live Site URL: https://dazzling-kelpie-426d25.netlify.app/
+
+Github link: https://github.com/leonredman/contentful-gasket-headless-cms
 
 ## Setup
 
