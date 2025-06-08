@@ -1,13 +1,10 @@
 /* eslint-disable no-unused-vars */
+import { createClient } from "contentful";
 import React from "react";
 import Head from "../components/head";
-// import GasketEmblem from '@gasket/assets/react/gasket-emblem';
-
-import { createClient } from "contentful";
 import Marquee from "../components/Marquee";
 import ProductCard from "../components/ProductCard";
 
-// const logoStyle = { width: '250px', height: '250px' };
 const pageStyle = { color: "black" };
 const headlineStyle = { textAlign: "center" };
 const containerStyle = { margin: "40px" };
@@ -18,37 +15,60 @@ export async function getStaticProps() {
     accessToken: process.env.CONTENTFUL_ACCESS_KEY,
   });
 
-  const recipeRes = await client.getEntries({ content_type: "recipe" });
-  const marqueeRes = await client.getEntries({
-    content_type: "fullWidthMarquee",
+  const pageRes = await client.getEntries({
+    content_type: "page",
+    "fields.slug": "sho-daddy",
+    include: 2,
   });
+
+  const page = pageRes.items[0];
+
+  console.log("Fetched Page:", page);
 
   return {
     props: {
-      recipes: recipeRes.items,
-      marqueeData: marqueeRes.items,
+      page,
     },
   };
 }
 
-export const IndexPage = ({ recipes, marqueeData }) => {
-  console.log("marqueeData[0]:", marqueeData[0]);
-  console.log("Full Width Marquee Entry:", marqueeData);
-  console.log("Recipes (card data):", recipes);
+export const IndexPage = ({ page }) => {
+  const sections = page?.fields?.sections || [];
+
+  console.log("Sections:", sections);
 
   return (
     <div style={pageStyle}>
-      <Head title="Home" />
+      <Head title={page.fields.title || "Sho-Daddy"} />
 
-      {marqueeData[0]?.fields && <Marquee data={marqueeData[0]} />}
+      {sections.map((section, index) => {
+        const type = section.sys.contentType.sys.id;
 
-      <h1 style={headlineStyle}>Sho-Daddy Contentful Sandbox</h1>
-      <h2 style={headlineStyle}>Multi-column Section</h2>
-      <div style={containerStyle} className="container">
-        {recipes.map((recipe) => (
-          <ProductCard key={recipe.sys.id} recipe={recipe} />
-        ))}
-      </div>
+        console.log("Section Type:", section.sys.contentType.sys.id);
+
+        switch (type) {
+          case "fullWidthMarquee":
+            return <Marquee key={index} data={section} />;
+
+          case "multiColumn":
+            console.log("Multi-column items:", section.fields.items);
+            return (
+              <div key={index} className="container" style={containerStyle}>
+                {section.fields.entryTitle && (
+                  <h2 style={headlineStyle}>{section.fields.entryTitle}</h2>
+                )}
+                <div className="grid">
+                  {section.fields.items?.map((item) => (
+                    <ProductCard key={item.sys.id} multiColumnItem={item} />
+                  ))}
+                </div>
+              </div>
+            );
+
+          default:
+            return null;
+        }
+      })}
     </div>
   );
 };
