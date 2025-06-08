@@ -52,10 +52,11 @@ export const IndexPage = ({ page }) => {
 
           case "multiColumn":
             console.log("Multi-column items:", section.fields.items);
+
             return (
               <div key={index} className="container" style={containerStyle}>
-                {section.fields.entryTitle && (
-                  <h2 style={headlineStyle}>{section.fields.entryTitle}</h2>
+                {section.fields.title && (
+                  <h2 style={headlineStyle}>{section.fields.title}</h2>
                 )}
                 <div className="grid">
                   {section.fields.items?.map((item) => (

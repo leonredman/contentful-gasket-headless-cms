@@ -5,8 +5,7 @@ import React from "react";
 // import Link from 'next/link'
 
 export default function ProductCard({ multiColumnItem }) {
-  const { title, slug, featuredImage, method } = multiColumnItem.fields;
-  console.log("Rendering Card:", title);
+  const { contentTitle, featuredImage, method } = multiColumnItem.fields;
 
   return (
     <div className="card">
@@ -15,11 +14,11 @@ export default function ProductCard({ multiColumnItem }) {
           src={"https:" + featuredImage.fields.file.url}
           width={featuredImage.fields.file.details.image.width}
           height={featuredImage.fields.file.details.image.height}
-          alt={featuredImage.fields.title || title}
+          alt={featuredImage.fields.title}
         />
       </div>
       <div className="info">
-        <h1 className="cardTitle"> {title} </h1>
+        <h1 className="cardTitle"> {contentTitle} </h1>
         <div className="description"> {documentToReactComponents(method)} </div>
         <button className="cta-style">Get Started</button>
       </div>
