@@ -5,7 +5,8 @@ import React from "react";
 // import Link from 'next/link'
 
 export default function ProductCard({ multiColumnItem }) {
-  const { contentTitle, featuredImage, method } = multiColumnItem.fields;
+  const { contentTitle, featuredImage, method, ctaText, ctaUrl } =
+    multiColumnItem.fields;
 
   return (
     <div className="card">
@@ -20,7 +21,11 @@ export default function ProductCard({ multiColumnItem }) {
       <div className="info">
         <h1 className="cardTitle"> {contentTitle} </h1>
         <div className="description"> {documentToReactComponents(method)} </div>
-        <button className="cta-style">Get Started</button>
+        {ctaText && ctaUrl && (
+          <a href={ctaUrl} className="cta-style">
+            {ctaText}
+          </a>
+        )}
       </div>
 
       <style jsx>{`
@@ -45,12 +50,15 @@ export default function ProductCard({ multiColumnItem }) {
         }
 
         .cta-style {
-          width: 160px;
+          width: 100px;
           padding: 10px 30px;
           background-color: black;
           color: white;
+          font-family: arial;
+          text-align: center;
           border: none;
           border-radius: 5px;
+          text-decoration: none;
         }
 
         @media (max-width: 768px) {
