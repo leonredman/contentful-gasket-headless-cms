@@ -9,6 +9,8 @@ export default function Marquee({ data }) {
     fullWidthHeading,
     fullWidthEyebrow,
     fullWidthDescription,
+    ctaText,
+    ctaUrl,
   } = data.fields;
 
   const fullWidthImageUrl = "https:" + fullWidthImage.fields.file.url;
@@ -37,7 +39,11 @@ export default function Marquee({ data }) {
           <div className="marqueeDescription">
             {documentToReactComponents(fullWidthDescription)}
           </div>
-          <button className="cta-style">Get Started</button>
+          {ctaText && ctaUrl && (
+            <a href={ctaUrl} className="cta-style">
+              {ctaText}
+            </a>
+          )}
         </div>
       </div>
 
@@ -97,6 +103,8 @@ export default function Marquee({ data }) {
           border: none;
           border-radius: 4px;
           cursor: pointer;
+          text-decoration: none;
+          display: inline-block;
         }
 
         @media (max-width: 768px) {
@@ -151,6 +159,8 @@ export default function Marquee({ data }) {
             width: 100%;
             padding: 12px;
             margin-top: 20px;
+            text-align: center;
+            align-self: center;
           }
         }
       `}</style>
