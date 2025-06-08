@@ -4,15 +4,18 @@ import React from "react";
 
 // import Link from 'next/link'
 
-export default function ProductCard({ recipe }) {
-  const { title, slug, cookingTime, thumbnail, method } = recipe.fields;
+export default function ProductCard({ multiColumnItem }) {
+  const { title, slug, featuredImage, method } = multiColumnItem.fields;
+  console.log("Rendering Card:", title);
+
   return (
     <div className="card">
       <div className="featured">
         <Image
-          src={"https:" + thumbnail.fields.file.url}
-          width={thumbnail.fields.file.details.image.width}
-          height={thumbnail.fields.file.details.image.height}
+          src={"https:" + featuredImage.fields.file.url}
+          width={featuredImage.fields.file.details.image.width}
+          height={featuredImage.fields.file.details.image.height}
+          alt={featuredImage.fields.title || title}
         />
       </div>
       <div className="info">
