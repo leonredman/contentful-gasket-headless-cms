@@ -72,6 +72,17 @@ export const IndexPage = ({ page }) => {
             return null;
         }
       })}
+      <style jsx>{`
+        body {
+          overflow-x: hidden;
+        }
+        .grid {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 20px;
+        }
+      `}</style>
     </div>
   );
 };

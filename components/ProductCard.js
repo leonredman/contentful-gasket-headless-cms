@@ -34,11 +34,13 @@ export default function ProductCard({ multiColumnItem }) {
           width: 31%;
           margin: 10px;
           vertical-align: top;
+          height: 100%;
         }
 
         .info {
           display: flex;
           flex-direction: column;
+          height: 100%;
         }
 
         .cardTitle {
@@ -46,7 +48,9 @@ export default function ProductCard({ multiColumnItem }) {
         }
 
         .description {
+          min-height: 100px;
           width: 100%;
+          font-family: arial;
         }
 
         .cta-style {
@@ -59,6 +63,7 @@ export default function ProductCard({ multiColumnItem }) {
           border: none;
           border-radius: 5px;
           text-decoration: none;
+          margin-top: auto;
         }
 
         @media (max-width: 768px) {
