@@ -9,20 +9,27 @@ export default function ProductCard({ multiColumnItem }) {
     multiColumnItem.fields;
 
   return (
-    <div className="card">
-      <div className="featured">
+    <div className="card" data-cy="card">
+      <div className="featured" data-cy="img-wrapper">
         <Image
           src={"https:" + featuredImage.fields.file.url}
           width={featuredImage.fields.file.details.image.width}
           height={featuredImage.fields.file.details.image.height}
           alt={featuredImage.fields.title}
+          data-cy="image"
         />
       </div>
-      <div className="info">
-        <h1 className="cardTitle"> {contentTitle} </h1>
-        <div className="description"> {documentToReactComponents(method)} </div>
+      <div className="info" data-cy="multi-column-section">
+        <h1 className="cardTitle" data-cy="headline-string">
+          {" "}
+          {contentTitle}{" "}
+        </h1>
+        <div className="description" data-cy="description">
+          {" "}
+          {documentToReactComponents(method)}{" "}
+        </div>
         {ctaText && ctaUrl && (
-          <a href={ctaUrl} className="cta-style">
+          <a href={ctaUrl} className="cta-style" data-cy="cta">
             {ctaText}
           </a>
         )}
