@@ -33,10 +33,14 @@ export default function Marquee({ data }) {
           style={{ backgroundImage: `url(${fullWidthImageUrl})` }}
         ></div>
 
-        <div className="heroContent">
-          <div className="eyebrow">{fullWidthEyebrow}</div>
-          <h1 className="marqueeTitle">{fullWidthHeading}</h1>
-          <div className="marqueeDescription">
+        <div className="heroContent" data-cy="marquee-start">
+          <div className="eyebrow" data-cy="eyebrow">
+            {fullWidthEyebrow}
+          </div>
+          <h1 className="marqueeTitle" data-cy="headline">
+            {fullWidthHeading}
+          </h1>
+          <div className="marqueeDescription" data-cy="description">
             {documentToReactComponents(fullWidthDescription)}
           </div>
           {ctaText && ctaUrl && (
