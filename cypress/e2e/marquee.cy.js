@@ -2,6 +2,8 @@ describe("Marquee Component", () => {
   beforeEach(() => {
     // step1: Visit local app before each test
     cy.visit("http://localhost:8080");
+    // step2: set viewport to 1920x1080 desktop
+    cy.viewport(1920, 1080);
   });
 
   it("should display marquee content", () => {
@@ -14,11 +16,11 @@ describe("Marquee Component", () => {
     cy.get('[data-cy="description"]').should("be.visible");
   });
 
-  //it("should contain correct text in headline", () => {
-  // can update to match actual headline in contentful data
-  // cy.get('[data-cy="headline"]').should(
-  //   "contain.text",
-  //   "Get the perfect domain — even if it's not available."
-  // );
-  // });
+  it("should contain correct text in headline", () => {
+    // can update to match actual headline in contentful data
+    cy.get('[data-cy="headline"]').should(
+      "contain.text",
+      "Get the perfect domain — even if it's not available."
+    );
+  });
 });
