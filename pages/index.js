@@ -60,7 +60,7 @@ export const IndexPage = ({ page }) => {
                 {section.fields.title && (
                   <h2 style={headlineStyle}>{section.fields.title}</h2>
                 )}
-                <div className="grid">
+                <div className="grid" data-cy="multi-column-wrapper">
                   {section.fields.items?.map((item) => (
                     <ProductCard key={item.sys.id} multiColumnItem={item} />
                   ))}
