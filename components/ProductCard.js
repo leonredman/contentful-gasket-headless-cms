@@ -20,10 +20,10 @@ export default function ProductCard({ multiColumnItem }) {
         />
       </div>
       <div className="info" data-cy="multi-column-section">
-        <h1 className="cardTitle" data-cy="headline-string">
+        <h3 className="cardTitle" data-cy="headline-string">
           {" "}
           {contentTitle}{" "}
-        </h1>
+        </h3>
         <div className="description" data-cy="description">
           {" "}
           {documentToReactComponents(method)}{" "}
