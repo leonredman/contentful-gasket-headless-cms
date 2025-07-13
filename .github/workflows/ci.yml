@@ -30,7 +30,7 @@ jobs:
         env:
           # Contentful Access Tokens
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-          CONTENTFUL_ACCESS_KEY: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+          CONTENTFUL_ACCESS_KEY: ${{ secrets.CONTENTFUL_ACCESS_KEY }}
       - name: Promote to main if tests pass
         if: success()
         run: |
