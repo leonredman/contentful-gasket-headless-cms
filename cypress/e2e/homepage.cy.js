@@ -8,6 +8,10 @@ describe("Homepage Smoke Test", () => {
     cy.url().should("include", "/");
   });
 
+  it("does not show fallback error", () => {
+    cy.get('[data-cy="error"]').should("not.exist");
+  });
+
   it("displays key sections", () => {
     cy.get('[data-cy="marquee"]').should("exist");
     cy.get('[data-cy="multi-column-section"]').should("exist");
