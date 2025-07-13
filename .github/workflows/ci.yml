@@ -24,14 +24,14 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           start: npm run dev
-          wait-on: "http://localhost:3000"
+          wait-on: "http://localhost:8080"
           wait-on-timeout: 60
 
       - name: Promote to main if tests pass
         if: success()
         run: |
-          git config --global user.email "ci-bot@example.com"
-          git config --global user.name "CI Bot"
+          git config --global user.email "leonredman917@gmail.com.com"
+          git config --global user.name "Leon Redman"
           git checkout main
           git pull origin main
           git merge staging --no-ff -m "Auto-merge from staging after passing tests"
