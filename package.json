@@ -5,7 +5,8 @@
   "scripts": {
     "build": "gasket build",
     "start": "gasket start",
-    "local": "gasket local"
+    "local": "gasket local",
+    "dev": "gasket local"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.2",

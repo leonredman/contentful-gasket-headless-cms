@@ -1,0 +1,53 @@
+name: Cypress CI and Promote to Main
+
+on:
+  push:
+    branches: [staging]
+
+jobs:
+  cypress-and-merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history, now we can access all branches
+          token: ${{ secrets.GH_PAT }} # checkout with token
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+
+        with:
+          start: npm run dev
+          wait-on: "http://localhost:8080"
+          wait-on-timeout: 60
+          config: baseUrl=http://localhost:8080
+        env:
+          # Contentful Access Tokens
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_ACCESS_KEY: ${{ secrets.CONTENTFUL_ACCESS_KEY }}
+      - name: Promote to main if tests pass
+        if: success()
+        run: |
+          git config --global user.email "leonredman917@gmail.com.com"
+          git config --global user.name "Leon Redman"
+          git checkout main
+          git pull origin main
+          git merge staging --no-ff -m "Auto-merge from staging after passing tests"
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/leonredman/contentful-gasket-headless-cms.git HEAD:main
+        env:
+          GIT_AUTHOR_NAME: CI Bot
+          GIT_COMMITTER_NAME: CI Bot
+          GIT_AUTHOR_EMAIL: ci-bot@example.com
+          GIT_COMMITTER_EMAIL: ci-bot@example.com
+          # Use the token from your secrets
+          GH_TOKEN: ${{ secrets.GH_PAT }}

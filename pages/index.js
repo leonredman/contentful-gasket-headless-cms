@@ -34,6 +34,13 @@ export async function getStaticProps() {
 }
 
 export const IndexPage = ({ page }) => {
+  if (!page || !page.fields) {
+    return (
+      <div data-cy="error" style={{ padding: "2rem", color: "red" }}>
+        No page content PageNotFoundError
+      </div>
+    );
+  }
   const sections = page?.fields?.sections || [];
 
   console.log("Sections:", sections);
