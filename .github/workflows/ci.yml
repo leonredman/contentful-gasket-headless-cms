@@ -27,6 +27,7 @@ jobs:
           start: npm run dev
           wait-on: "http://localhost:8080"
           wait-on-timeout: 60
+          config: baseUrl=http://localhost:8080
         env:
           # Contentful Access Tokens
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
