@@ -6,7 +6,8 @@
     "build": "gasket build",
     "start": "gasket start",
     "local": "gasket local",
-    "dev": "gasket local"
+    "dev": "gasket local",
+    "test": "jest"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.2",
@@ -27,8 +28,23 @@
     "react-redux": "^8.0.0",
     "redux": "^4.0.5"
   },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "@gasket/plugin-jest": "^7.5.3",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "babel-jest": "^30.0.4",
     "cypress": "^14.4.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
+    "react-test-renderer": "^18.3.1",
     "webpack": "^5.21.2"
   }
 }
