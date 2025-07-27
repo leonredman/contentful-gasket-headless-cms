@@ -1,13 +1,11 @@
 module.exports = {
   plugins: {
-    presets: [
-      '@gasket/nextjs',
-    ],
+    presets: ["@gasket/nextjs"],
+    add: ["@gasket/plugin-jest"],
   },
   nextConfig: {
-     images: {
-      domains: ['images.ctfassets.net'],
+    images: {
+      domains: ["images.ctfassets.net"],
     },
-
-  }
-}
+  },
+};
