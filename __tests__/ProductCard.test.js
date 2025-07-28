@@ -4,7 +4,16 @@ import React from "react";
 import ProductCard from "../components/ProductCard";
 
 // Mock next/image to use plain img tag in tests next/image to avoid SSR-specific issues
-jest.mock("next/image", () => (props) => <img {...props} alt={props.alt} />);
+// jest.mock("next/image", () => (props) => <img {...props} alt={props.alt} />);
+
+// avoids JSX
+// jest.mock(
+//   "next/image",
+//   () => (props) => React.createElement("img", { ...props, alt: props.alt })
+// );
+
+// moved mock to own file
+jest.mock("next/image");
 
 // Mock styled-jsx <style jsx> to suppress 'jsx' warning
 jest.mock("styled-jsx/style", () => ({
